@@ -2,14 +2,14 @@ name: CD pipeline
 
 on:
   workflow_run:
-    workflows: ["CI pipeline"]  # Name of our CI workflow
+    workflows: ["CI pipeline"] # Name of our CI workflow
     types:
-      - completed
+      - completed # Only run if the CI pipeline has completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Only run if the CI pipeline has passed
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
